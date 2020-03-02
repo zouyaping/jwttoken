@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtech.jwttoken.mapper.VisitInfoMapper">
+    <resultMap id="ListVisitInfo" type="com.qtech.jwttoken.entity.VisitInfo">
+        <result property="updateTime" column="updateTime" javaType="java.lang.String" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <insert id="saveData" parameterType="com.qtech.jwttoken.entity.VisitInfo">
+        insert into visitInfo(id,visitLeavel,visitDept,visitTime,receptionist,receptionDept,escortLeaders,processPlan,remark,passenger,week,mornOrAfter) values(#{visitInfo.id},
+        #{visitInfo.visitLeavel},
+        #{visitInfo.visitDept},
+        #{visitInfo.visitTime},
+        #{visitInfo.receptionist},
+        #{visitInfo.receptionDept},
+        #{visitInfo.escortLeaders},
+        #{visitInfo.processPlan},
+        #{visitInfo.remark},
+        #{visitInfo.passenger},
+        #{visitInfo.week},
+        #{visitInfo.mornOrAfter})
+    </insert>
+    <select id="getAllData" resultMap="ListVisitInfo">
+        select id,visitLeavel,visitDept,visitTime,receptionist,receptionDept,escortLeaders,processPlan,remark,passenger,week,mornOrAfter,DATE_FORMAT(updateTime,'%Y-%m-%d %H:%i:%s') as updateTime from visitInfo
+        order by visitTime desc
+    </select>
+
+    <select id="getOneWeekData" resultMap="ListVisitInfo">
+        select id,visitLeavel,visitDept,visitTime,receptionist,receptionDept,escortLeaders,processPlan,remark,passenger,week,mornOrAfter,DATE_FORMAT(updateTime,'%Y-%m-%d %H:%i:%s') as updateTime from visitInfo
+        where visitTime between #{startTime} and #{endTime} order by visitTime
+    </select>
+    <select id="queryById" resultMap="ListVisitInfo">
+        select * from visitInfo where id=#{id}
+    </select>
+</mapper>

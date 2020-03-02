@@ -1,0 +1,13 @@
+create table visitInfo(id varchar(50)not null primary key,
+visitLeavel varchar(25),
+visitDept varchar(250),
+visitTime varchar(50),
+receptionist varchar(25),
+receptionDept varchar(50),
+escortLeaders varchar(50),
+processPlan varchar(1000),
+remark varchar(1000),
+week int,
+mornOrAfter varchar(10),
+updateTime timestamp default current_timestamp 
+);

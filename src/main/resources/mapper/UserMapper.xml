@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qtech.jwttoken.mapper.UserMapper">
+    <select id="login" parameterType="com.qtech.jwttoken.entity.User" resultType="com.qtech.jwttoken.entity.User">
+        select * from user where username=#{user.username} and password=password(#{user.password})
+    </select>
+    <insert id="regist" parameterType="com.qtech.jwttoken.entity.User">
+        insert into user(username,password) values(#{user.username},password(#{user.password}))
+    </insert>
+</mapper>
